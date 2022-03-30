@@ -1,0 +1,169 @@
+<html>
+<head>
+<title> </title>
+<style>
+	
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		
+	}
+	 
+	body{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		width: 100%;
+		background-color: #FF7D33;
+	
+	}
+	
+    .kutu{
+		width:50px;
+		height:16px;
+		size:16px;
+		padding-top:17px;
+		padding-bottom:30px;
+		float:left;
+		background-color:red;
+		border:1px solid black;
+		color:white;
+		text-align:center;
+	
+}
+	
+
+	.blok{
+		width:100%;
+		height:100%;
+		font-size: 3rem;
+		border:1px solid black;
+		background-color: #e3e3e3;
+		align-items: center;
+		justify-content:center;
+		display: flex;
+	}
+	
+	.container{
+		width: 30rem;
+		height: 30rem;
+		display: grid;
+	    grid-template-columns: repeat(3 ,1fr);
+        grid-template-rows: repeat(3 ,1fr); 
+		border:1px solid;
+	
+	}
+	
+</style>
+</head>
+
+<body>
+<div id="genelCerceve">
+<div class="kutu"></div>
+<div class="kutu"></div>
+<div class="kutu"></div>
+<div class="kutu"></div>
+<div class="kutu"></div>
+<div class="kutu"></div>
+</div><br>
+<div id ="sifre">
+<div class="container" id="blok">
+
+	<div class="blok"></div>
+	<div class="blok"></div>
+	<div class="blok"></div>
+	<div class="blok"></div>
+	<div class="blok"></div>
+	<div class="blok"></div>
+	<div class="blok"></div>
+	<div class="blok"></div>
+	<div class="blok"></div>
+</div>
+</div>
+<script>
+
+sifre = "123456";
+
+sistemDurum = true;
+Degistir();
+   
+Sifree = "";
+denemeHakki = 3;
+function Degistir(){
+
+
+
+	
+				diziBlok = document.getElementsByClassName("blok");
+		
+		dizi = new Array();	
+
+
+		for(j = 0; j<9;j++)
+		 {
+			geciciDeger = -1;
+			sayi = 0;
+			
+			do{
+			
+				sayi=Math.round(Math.random()*8);
+				geciciDeger = dizi.indexOf(sayi+1);
+			}
+			while(geciciDeger > -1 )
+			dizi[j] = sayi+1;
+			diziBlok[j].innerHTML = sayi+1;
+			diziBlok[j].onclick = function(){
+				if(sistemDurum)
+				{
+					sdeger = this.innerHTML;
+					diziKutu = document.getElementsByClassName("kutu");
+					
+					diziKutu[Sifree.length].innerHTML ="*";
+					Sifree += sdeger;
+				
+					if(Sifree.length >= 6)
+					{
+					
+						if(sifre==Sifree){
+							alert("kazandınız");
+						}
+						
+						else{
+							
+							dkutu = document.getElementsByClassName("kutu");
+							for(i=0; i<dkutu.length; i++){
+								dkutu[i].innerHTML= "";
+							
+							}
+							Sifree = "";
+							denemeHakki--;
+							if(denemeHakki<1){
+							alert("Hakkınız Bitti")
+							sistemDurum = false;
+							}
+							
+						}
+					}
+					
+					Degistir();
+				}
+			};
+
+		 }
+
+	
+
+
+	
+
+}
+//document.getElementById("blok").innerHTML = "<div class='blok'>"+dizi[0]+"</div><div class='blok'>"+dizi[1]+"</div><div class='blok'>"+dizi[2]+"</div><div class='blok'>"+dizi[3]+"</div><div class='blok'>"+dizi[4]+"</div><div class='blok'>"+dizi[5]+"</div><div class='blok'>"+dizi[6]+"</div><div class='blok'>"+dizi[7]+"</div><div class='blok'>"+dizi[8]+"</div>"; 
+
+
+</script>
+</body>
+
+</html>
